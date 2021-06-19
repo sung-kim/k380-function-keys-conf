@@ -32,8 +32,8 @@
 #include <errno.h>
 
 #define HID_VENDOR_ID_LOGITECH			(__u32)0x046d
-#define HID_DEVICE_ID_K380              (__s16)0xb342
-
+#define HID_DEVICE_ID_K380              (__s16)0xb362
+//#define HID_DEVICE_ID_K380              (__s16)0xb342
 
 const char k380_seq_fkeys_on[]  = {0x10, 0xff, 0x0b, 0x1e, 0x00, 0x00, 0x00};
 const char k380_seq_fkeys_off[] = {0x10, 0xff, 0x0b, 0x1e, 0x01, 0x00, 0x00};
@@ -147,15 +147,14 @@ int main(int argc, char **argv)
 	}
 	else
        	{
-		if (info.bustype != BUS_BLUETOOTH || 
+		if (info.bustype != BUS_BLUETOOTH ||
 		    info.vendor  != HID_VENDOR_ID_LOGITECH ||
 		    info.product != HID_DEVICE_ID_K380)
 		{
 			errno = EPERM;
-			perror("The given device is not a supported "
-			       "Logitech keyboard");
-			printf("Product : %x", info.product);
-
+			perror("The given device is not a supported Logitech keyboard");
+			printf("Product : %x\n", info.product);
+			printf("Vendor  : %x\n", info.vendor);
 			return 1;
 		}
 	}

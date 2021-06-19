@@ -5,8 +5,8 @@ UDEVDIR = $(DESTDIR)/etc/udev/rules.d
 
 all: k380_conf
 
-k380_conf:
-	$(CC) k380_conf.c -o k380_conf
+k380_conf: k380_conf.c
+	$(CC) $^ -o $@
 
 reload:
 	udevadm control --reload
